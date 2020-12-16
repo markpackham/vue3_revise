@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue3 in Html</title>
     <script src="https://unpkg.com/vue@next"></script>
+    <style>
+      .box {
+        padding: 100px 0;
+        width: 400px;
+        text-align: center;
+        background: #ddd;
+        margin: 20px;
+        display: inline-block;
+      }
+    </style>
   </head>
   <body>
     <h1>Learn Vue3 from https://www.youtube.com/watch?v=F7PLPJqVotk</h1>
@@ -24,7 +34,14 @@
       <!-- v-show uses CSS to hide things rather than remove from DOM so less safe 
        however hiding in CSS is faster than removing from the DOM
       -->
-      <div v-show="showBooks">currently showing books</div>
+      <!-- <div v-show="showBooks">currently showing books</div> -->
+
+      <br />
+      <!-- mouse events -->
+      <div class="box" @mouseover="handleEvents">mouseover (enter)</div>
+      <div class="box" @mouseleave="handleEvents">mouseleave</div>
+      <div class="box" @dblclick="handleEvents">double click</div>
+      <div class="box"></div>
 
       <!-- <button @click="age++">Increase age</button>
       <button @click="age--">Decrease age</button>
