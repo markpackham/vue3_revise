@@ -9,7 +9,11 @@
   <body>
     <h1>Learn Vue3 from https://www.youtube.com/watch?v=F7PLPJqVotk</h1>
     <div id="app">
-      <h2>I am the template</h2>
+      <p>{{title}} - {{author}} - {{age}}</p>
+      <button @click="age++">Increase age</button>
+      <button @click="age--">Decrease age</button>
+      <!-- <div @click="title = 'something else'">Change book title</div> -->
+      <button @click="changeTitle('Meow')">Change title</button>
     </div>
     <script src="app.js"></script>
   </body>
