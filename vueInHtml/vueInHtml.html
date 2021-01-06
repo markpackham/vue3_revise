@@ -18,9 +18,18 @@
   </head>
   <body>
     <h1>Learn Vue3 from https://www.youtube.com/watch?v=F7PLPJqVotk</h1>
+
+    <!-- Vue exists within the app div -->
     <div id="app">
+      <a :href="url">Some website</a>
       <div v-if="showBooks">
-        <p>{{title}} - {{author}} - {{age}}</p>
+        <ul>
+          <li v-for="book in books">
+            <img :src="book.img" :alt="book.title" />
+            <h3>{{book.title}}</h3>
+            <p>{{book.author}}</p>
+          </li>
+        </ul>
       </div>
 
       <button @click="toggleShowBooks">
@@ -38,10 +47,12 @@
 
       <br />
       <!-- mouse events -->
-      <div class="box" @mouseover="handleEvents">mouseover (enter)</div>
+      <div class="box" @mouseover="handleEvents($event,5)">
+        mouseover (enter)
+      </div>
       <div class="box" @mouseleave="handleEvents">mouseleave</div>
       <div class="box" @dblclick="handleEvents">double click</div>
-      <div class="box"></div>
+      <div class="box" @mousemove="handleMouseMove">position - {{x}} {{y}}</div>
 
       <!-- <button @click="age++">Increase age</button>
       <button @click="age--">Decrease age</button>
