@@ -8,18 +8,20 @@ const app = Vue.createApp({
         {
           title: "name of the wind",
           author: "patrick rothfus",
-          img: "https://lithub.com/wp-content/uploads/2018/12/81A9dFqIEEL.jpg",
+          img: "./assets/1.jpg",
+          isFav: true,
         },
         {
           title: "name of the wind2",
           author: "patrick rothfus2",
-          img: "https://lithub.com/wp-content/uploads/2018/12/91yOw4ZHA3L.jpg",
+          img: "./assets/2.jpg",
+          isFav: false,
         },
         {
           title: "name of the wind3",
           author: "patrick rothfus3",
-          img:
-            "https://lithub.com/wp-content/uploads/2018/12/SexographiesbyGabrielaWiener-9781632061591-683x1024.jpg",
+          img: "./assets/3.jpg",
+          isFav: false,
         },
       ],
     };
@@ -31,6 +33,14 @@ const app = Vue.createApp({
     // },
     toggleShowBooks() {
       this.showBooks = !this.showBooks;
+    },
+    toggleFav(book) {
+      book.isFav = !book.isFav;
+    },
+  },
+  computed: {
+    filteredBooks() {
+      return this.books.filter((book) => book.isFav);
     },
   },
 });
