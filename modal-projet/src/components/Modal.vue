@@ -1,11 +1,22 @@
 <template>
-  <div class="backdrop">
-    <div class="modal">
-      <h1>Modal Title</h1>
-      <p>Modal content</p>
+  <div class="backdrop" @click.self="closeModal">
+    <div class="modal" :class="{ sale: theme === 'sale' }">
+      <h1>{{ header }}</h1>
+      <p>{{ text }}</p>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: ["header", "text", "theme"],
+  methods: {
+    closeModal() {
+      this.$emit("close");
+    },
+  },
+};
+</script>
 
 <!-- <style scoped> using scoped causesa performance hit so more specific CSS selectors tend to be better -->
 <!-- for global styling using the assets forlder -->
@@ -24,6 +35,13 @@
 }
 .modal p {
   font-style: normal;
+}
+.modal.sale {
+  background: crimson;
+  color: white;
+}
+.modal.sale h1 {
+  color: white;
 }
 .backdrop {
   top: 0;

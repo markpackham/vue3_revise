@@ -1,7 +1,12 @@
 <template>
   <h1>{{ title }}</h1>
-  <input type="text" ref="name" />
-  <Modal />
+  <p>Welcome</p>
+  <div v-if="showModal">
+    <Modal :header="header" :text="text" theme="sale" @close="toggleModal" />
+  </div>
+  <button @click.alt="toggleModal">
+    Open Modal (hold onto "alt" when clicking)
+  </button>
 </template>
 
 <script>
@@ -13,7 +18,15 @@ export default {
   data() {
     return {
       title: "A view App",
+      header: "Sign up for the Giveaway!",
+      text: "Hello world",
+      showModal: false,
     };
+  },
+  methods: {
+    toggleModal() {
+      this.showModal = !this.showModal;
+    },
   },
 };
 </script>
