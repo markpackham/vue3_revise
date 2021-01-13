@@ -17,7 +17,7 @@
     <!-- if you hold down "alt" whilst typing "," then the "," won't get recorded" -->
     <input type="text" v-model="tempSkill" @keyup.alt="addSkill" />
     <div v-for="skill in skills" :key="skill" class="pill">
-      <span>{{ skill }}</span>
+      <span @click="deleteSkill(skill)">{{ skill }}</span>
     </div>
 
     <div>
@@ -70,6 +70,11 @@ export default {
         }
         this.tempSkill = "";
       }
+    },
+    deleteSkill(skill) {
+      this.skills = this.skills.filter((item) => {
+        return skill !== item;
+      });
     },
   },
 };
