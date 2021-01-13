@@ -1,9 +1,10 @@
 <template>
-  <form>
+  <!-- prevent default form submit action to stop page reload -->
+  <form @submit.prevent="handleSubmit">
     <label>Email:</label>
     <input type="email" v-model="email" required />
 
-    <label>Password:</label>
+    <label>Password (must be 3 characters long):</label>
     <input type="password" v-model="password" required />
     <div v-if="passwordError" class="error">{{ passwordError }}</div>
 
@@ -59,6 +60,7 @@ export default {
       tempSkill: "",
       skills: [],
       names: [],
+      passwordError: null,
       terms: false,
     };
   },
@@ -75,6 +77,21 @@ export default {
       this.skills = this.skills.filter((item) => {
         return skill !== item;
       });
+    },
+    handleSubmit() {
+      // validate password
+      this.passwordError =
+        this.password.length > 2
+          ? ""
+          : "Password must be at least 3 characters long";
+      if (!this.passwordError) {
+        // make request to database to save user
+        console.log("email: ", this.email);
+        console.log("password: ", this.password);
+        console.log("role: ", this.role);
+        console.log("skills: ", this.skills);
+        console.log("terms accepted: ", this.terms);
+      }
     },
   },
 };
