@@ -14,9 +14,23 @@
     </select>
 
     <label>Skills (press alt + comma to add):</label>
+    <!-- if you hold down "alt" whilst typing "," then the "," won't get recorded" -->
     <input type="text" v-model="tempSkill" @keyup.alt="addSkill" />
-    <div class="pill">
-      <span></span>
+    <div v-for="skill in skills" :key="skill" class="pill">
+      <span>{{ skill }}</span>
+    </div>
+
+    <div>
+      <input type="checkbox" value="Mark" v-model="names" />
+      <label for="">Mark</label>
+    </div>
+    <div>
+      <input type="checkbox" value="Bob" v-model="names" />
+      <label for="">Bob</label>
+    </div>
+    <div>
+      <input type="checkbox" value="Jim" v-model="names" />
+      <label for="">Jim</label>
     </div>
 
     <div class="terms">
@@ -28,6 +42,11 @@
       <button>Create an Account</button>
     </div>
   </form>
+  <p>Email: {{ email }}</p>
+  <p>Password: {{ password }}</p>
+  <p>Roles: {{ role }}</p>
+  <p>Terms accepted: {{ terms }}</p>
+  <p>Names {{ names }}</p>
 </template>
 
 <script>
@@ -35,7 +54,23 @@ export default {
   data() {
     return {
       email: "",
+      password: "",
+      role: "",
+      tempSkill: "",
+      skills: [],
+      names: [],
+      terms: false,
     };
+  },
+  methods: {
+    addSkill(e) {
+      if (e.key === "," && this.tempSkill) {
+        if (!this.skills.includes(this.tempSkill)) {
+          this.skills.push(this.tempSkill);
+        }
+        this.tempSkill = "";
+      }
+    },
   },
 };
 </script>
