@@ -1,8 +1,23 @@
-<template></template>
+<template>
+  <p>My name is {{ name }} my age is {{ age }}</p>
+  <button @click="handleClick">Click me</button>
+</template>
 
 <script>
 export default {
-  components: {},
+  name: "Home",
+  // setup runs before created() and mounted()
+  setup() {
+    let name = "mark";
+    let age = 20;
+
+    const handleClick = () => {
+      console.log("You clicked me");
+    };
+
+    // you don't need to do "name: name" if key and value are the same
+    return { name, age, handleClick };
+  },
 };
 </script>
 
