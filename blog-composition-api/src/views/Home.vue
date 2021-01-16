@@ -1,36 +1,37 @@
 <template>
-  <!-- <p ref="paragraphTag">My name is {{ name }} my age is {{ age }}</p> -->
-  <p>My name is {{ name }} my age is {{ age }}</p>
-  <button @click="handleClick">Click me</button>
-  <button @click="age++">Add 1 to age</button>
-  <input type="text" v-model="name" />
+  <div class="home">
+    <h1>Home</h1>
+    <h2>Refs</h2>
+    <p>{{ ninjaOne.name }} - {{ ninjaOne.age }}</p>
+    <button @click="updateNinjaOne">Update ninja one</button>
+    <h2>Reactive</h2>
+    <p>{{ ninjaTwo.name }} - {{ ninjaTwo.age }}</p>
+    <button @click="updateNinjaTwo">Update ninja two</button>
+  </div>
 </template>
 
 <script>
-import { ref } from "vue";
+// ref vs reactive
+// reactive save you from having to use .value
+// reactive can't use primitive values inside it, they won't update
+// best use refs over reactive in the future because of this limitation
+import { ref, reactive } from "vue";
 
 export default {
   name: "Home",
-  // setup runs before created() and mounted()
   setup() {
-    const name = ref("mark");
-    const age = ref(20);
+    const ninjaOne = ref({ name: "mark", age: 20 });
+    const ninjaTwo = reactive({ name: "timmy", age: 40 });
 
-    // const paragraphTag = ref(null);
-
-    // const handleClick = () => {
-    //   paragraphTag.value.classList.add("test");
-    //   paragraphTag.value.textContent = "Hello World";
-    // };
-
-    const handleClick = () => {
-      name.value = "timmy";
-      age.value = 21;
+    const updateNinjaOne = () => {
+      ninjaOne.value.age = 21;
     };
 
-    // you don't need to do "name: name" if key and value are the same
-    // return { name, age, handleClick, paragraphTag };
-    return { name, age, handleClick };
+    const updateNinjaTwo = () => {
+      ninjaTwo.age = 45;
+    };
+
+    return { ninjaOne, updateNinjaOne, ninjaTwo, updateNinjaTwo };
   },
 };
 </script>
